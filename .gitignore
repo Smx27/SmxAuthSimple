@@ -1,0 +1,11 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.template.config/
+.idea/
+*/*.db
+*/*.db-shm
+*/*.db-wal
+*/Data/Migrations
