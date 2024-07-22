@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PackageType>Template</PackageType>
+        <PackageVersion>1.0.0</PackageVersion>
+        <PackageId>Smx27.DotNetCore.SmxAuthSimple</PackageId>
+        <Title>SmxAuthSimple</Title>
+        <Company>Smx27</Company>
+        <Authors>Sumit Maiti</Authors>
+        <Copyright>Smx27 © copyrightYear</Copyright>
+        <Description>A project template for creating a RESTful Web API using ASP.NET Core controllers, with optional support for OpenAPI and authentication.</Description>
+        <PackageTags>webapi;auth;identityservice;jwt;template;net8.0;api;web;smx27;</PackageTags>
+        <TargetFramework>net8.0</TargetFramework>
+        <PackageCopyright>smx27 © copyrightYear</PackageCopyright>
+        <PackageProjectUrl>https://github.com/Smx27/SmxAuthSimple</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/Smx27/SmxAuthSimple</RepositoryUrl>
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ContentTargetFolders>content</ContentTargetFolders>
+        <NoWarn>$(NoWarn);NU5128;NU5115</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\Data\Migrations\**" />
+        <Compile Remove="**\*" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>{TargetFramework}</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ContentTargetFolders>content</ContentTargetFolders>
+        <EnableDefaultItems>false</EnableDefaultItems>
+<!--        <NoDefaultExcludes>true</NoDefaultExcludes>-->
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <PackageOutputPath>.</PackageOutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!-- Define package versions based on the target framework -->
+        <JwtBearerVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.7</JwtBearerVersion>
+        <JwtBearerVersion Condition="'$(TargetFramework)' == 'net7.0'">7.0.20</JwtBearerVersion>
+
+        <IdentityVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.7</IdentityVersion>
+        <IdentityVersion Condition="'$(TargetFramework)' == 'net7.0'">7.0.20</IdentityVersion>
+
+        <EntityFrameworkCoreVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.7</EntityFrameworkCoreVersion>
+        <EntityFrameworkCoreVersion Condition="'$(TargetFramework)' == 'net7.0'">7.0.20</EntityFrameworkCoreVersion>
+
+        <DesignVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.7</DesignVersion>
+        <DesignVersion Condition="'$(TargetFramework)' == 'net7.0'">7.0.20</DesignVersion>
+
+        <SqliteVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.7</SqliteVersion>
+        <SqliteVersion Condition="'$(TargetFramework)' == 'net7.0'">7.0.20</SqliteVersion>
+
+        <SqlServerVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.7</SqlServerVersion>
+        <SqlServerVersion Condition="'$(TargetFramework)' == 'net7.0'">7.0.20</SqlServerVersion>
+
+        <TokensVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.0</TokensVersion>
+        <TokensVersion Condition="'$(TargetFramework)' == 'net7.0'">7.7.1</TokensVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(JwtBearerVersion)" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(IdentityVersion)" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EntityFrameworkCoreVersion)" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="$(DesignVersion)">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="$(SqliteVersion)" Condition="'$(UseSqlite)'=='true'" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(SqlServerVersion)" Condition="'$(UseSqlServer)'=='true'" />
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="$(TokensVersion)" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.6.2" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="$(TokensVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="**\*" Exclude="**\bin\**;**\obj\**;**\*.db;**\.git\**;**\.idea\**;**\.vs\**;**\Data\Migrations\**" />    </ItemGroup>
+<!--Made by Smx27 copyrightYear-->
+</Project>

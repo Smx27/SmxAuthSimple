@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Sumit Maiti",
+  "classifications": [ "Web API", "API" ],
+  "identity": "Smx27.DotNetCore.SmxAuthSimple",
+  "name": "DotNet core web api with identity services",
+  "shortName": "smxauthsimple",
+  "generatorVersions": "[1.0.0.0-*)",
+  "description": "A project template for creating a RESTful Web API using ASP.NET Core controllers, with optional support for OpenAPI and authentication.",
+  "sourceName": "SmxAuthSimple",
+  "defaultName": "SmxWebAPI",
+  "repository":{
+    "url":"https://github.com/Smx27/SmxAuthSimple",
+    "type": "GitHub"
+  },
+  "projectURL":"https://github.com/Smx27/SmxAuthSimple",
+  "releaseNotes": "Some release notes for test",
+  "preferNameDirectory": true,
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework version.",
+      "datatype": "choice",
+      "choices": [ 
+        {
+          "choice":"net7.0",
+          "description": "Target net7.0"
+        }, 
+        {
+          "choice":"net8.0",
+          "description": "Target net8.0"
+        }
+      ],
+      "defaultValue": "net8.0",
+      "replaces": "{TargetFramework}"
+    },
+    "TargetNet8": {
+      "type": "computed",
+      "value": "(Framework == \"net8.0\")"
+    },
+    "TargetNet7": {
+      "type": "computed",
+      "value": "(Framework == \"net7.0\")"
+    },
+    "copyrightYear": {
+      "type": "generated",
+      "generator": "now",
+      "replaces": "copyrightYear",
+      "parameters": {
+        "format": "yyyy"
+      }
+    },
+    "dbType": {
+      "type": "parameter",
+      "defaultValue": "sqlite",
+      "description": "The database type to use.",
+      "choices": [
+        {
+          "choice": "sqlite",
+          "description": "Sqlite Database connection.",
+          "displayName": "Add SqLite"
+        },
+        {
+          "choice": "sqlserver",
+          "description": "MS SqlServer for database",
+          "displayName": "Add MsSQL Server"
+        }
+      ],
+      "allowMultipleValues": false
+    },
+    "UseSqlite" : {
+      "type": "computed",
+      "value": "(dbType == \"sqlite\")"
+    }, 
+    "UseSqlServer": {
+      "type": "computed",
+      "value": "(dbType == \"sqlserver\")"
+    },
+    "EnableSwaggerSupport": {
+      "type": "parameter",
+      "description": "Enable swagger support for this application or not.",
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+    "skipRestore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "If specified, skips the automatic restore of the project on create.",
+      "defaultValue": "false"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "SmxAuthSimple.API/SmxAuthSimple.API.csproj"
+    }
+  ],
+  "postActions": [
+    {
+      "id": "restore",
+      "condition": "(!skipRestore)",
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [
+        {
+          "text": "Run 'dotnet restore'"
+        }
+      ],
+      "continueOnError": true,
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025"
+    }
+  ],
+  "sources": [
+    {
+      "source": "./",
+      "target": "./",
+      "exclude": [ 
+        "**/*.json",
+        "**/*.md",
+        "**/bin/**",
+        "**/obj/**",
+        ".git/**",
+        ".idea/**",
+        ".vs/**"
+      ],
+      "modifiers": [
+        {
+          "exclude": [
+            "SmxAuthSimple.API/Data/Migrations",
+            "SmxAuthSimple.API/SmxAuthSimple.db",
+            "SmxAuthSimple.API/SmxAuthSimple.db-shm",
+            "SmxAuthSimple.API/SmxAuthSimple.db-wal",
+            "SmxAuthSimple.API/.gitignore"
+          ]
+        }
+      ]
+    }
+  ],
+  "tags": {
+    "language": "c#",
+    "type": "project"
+  }
+}

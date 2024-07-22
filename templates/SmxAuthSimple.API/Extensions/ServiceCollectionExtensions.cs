@@ -18,6 +18,7 @@ namespace SmxAuthSimple.API.Extensions;
 /// </summary>
 public static class ServiceCollectionExtensions
 {
+    #if(UseSqlite)
     /// <summary>
     /// This is an extension method for <see cref="IServiceCollection"/> to add sqlLite
     /// Database for application
@@ -28,10 +29,21 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSqLiteDatabase(this IServiceCollection services, string? connectionString)
     {
         services.AddDbContext<DataContext>(option => { option.UseSqlite(connectionString); });
-
         return services;
     }
-
+    #elif (UseSqlServer)
+    /// <summary>
+    /// This is an extension method for <see cref="IServiceCollection"/> to add SqlServer
+    /// Database for application
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="connectionString">Connection string for SQLite <example>"Server=myServerAddress;Database=myDataBase;Trusted_Connection=True;"</example></param>
+    /// <returns><see cref="IServiceCollection"/> With SqlLite db configuration</returns>
+    public static IServiceCollection AddSqlServerDatabase(this IServiceCollection services, string? connectionString)
+    {
+        services.AddDbContext<DataContext>(option => { option.UseSqlServer(connectionString); });
+    }
+    #endif
     /// <summary>
     /// Adds authentication to application. Please feel free to modify this according to your measure
     /// <see cref="ServiceCollectionExtensions"/>
@@ -57,7 +69,7 @@ public static class ServiceCollectionExtensions
             });
         return services;
     }
-
+    #if(EnableSwaggerSupport)
     /// <summary>
     /// Adds default OpenAPI configuration for the APIs, utilizing settings from the appsettings file.
     /// </summary>
@@ -131,7 +143,7 @@ public static class ServiceCollectionExtensions
 
         return services;
     }
-
+    #endif
     /// <summary>
     /// Adds application dependencies to the service collection.
     /// </summary>

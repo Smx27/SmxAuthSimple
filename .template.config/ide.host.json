@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/ide.host",
+  "order": 200,
+  "icon": "ide/icon.ico",
+  "supportsDocker": true,
+  "symbolInfo": [
+    {
+      "id": "Framework",
+      "isVisible": true
+    },
+    {
+      "id": "dbType",
+      "isVisible": true
+    },
+    {
+      "id": "EnableSwaggerSupport",
+      "isVisible": true
+    }
+  ]
+}

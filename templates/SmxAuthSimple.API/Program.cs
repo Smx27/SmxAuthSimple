@@ -6,12 +6,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+#if(EnableSwaggerSupport)
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerDocAndApplicationInfo(builder.Configuration);
+#endif
 builder.Services.AddIdentityServices();
 // Here this token is must have please add if not 
 builder.Services.AddAuthenticationAndTokenValidation(builder.Configuration.GetValue<string>("JwtToken"));
+#if(UseSqlite)
 builder.Services.AddSqLiteDatabase(builder.Configuration.GetConnectionString("DefaultConnection"));
+#elif (UseSqlServer)
+builder.Services.AddSqlServerDatabase(builder.Configuration.GetConnectionString("DefaultConnection"));
+#endif
 // Please add application dependencies here 
 builder.Services.AddApplicationDependencies();
 builder.Services.AddEndpointsApiExplorer();
@@ -19,6 +25,7 @@ builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+#if(EnableSwaggerSupport)
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -29,7 +36,7 @@ if (app.Environment.IsDevelopment())
     });
     app.MapSwagger();
 }
-
+#endif
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
