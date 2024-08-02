@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <PackageType>Template</PackageType>
-        <PackageVersion>1.0.0</PackageVersion>
+        <PackageVersion>1.0.1</PackageVersion>
         <PackageId>Smx27.DotNetCore.SmxAuthSimple</PackageId>
         <Title>SmxAuthSimple</Title>
         <Company>Smx27</Company>
@@ -20,11 +20,14 @@
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <ContentTargetFolders>content</ContentTargetFolders>
         <NoWarn>$(NoWarn);NU5128;NU5115</NoWarn>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
         <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\Data\Migrations\**" />
         <Compile Remove="**\*" />
+        <None Include="README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
 </Project>

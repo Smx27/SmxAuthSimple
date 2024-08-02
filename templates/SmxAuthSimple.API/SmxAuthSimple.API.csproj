@@ -5,13 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <IncludeContentInPack>true</IncludeContentInPack>
-        <IncludeBuildOutput>false</IncludeBuildOutput>
-        <ContentTargetFolders>content</ContentTargetFolders>
-        <EnableDefaultItems>false</EnableDefaultItems>
-<!--        <NoDefaultExcludes>true</NoDefaultExcludes>-->
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <PackageOutputPath>.</PackageOutputPath>
+
     </PropertyGroup>
 
     <PropertyGroup>
